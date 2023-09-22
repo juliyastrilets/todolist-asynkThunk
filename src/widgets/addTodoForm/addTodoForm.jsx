@@ -8,7 +8,6 @@ export const AddTodoForm = (props) => {
       <div className={style.mask}></div>
       <form className={style.form} onSubmit={props.onSubmit}>
         <div className={style.header}>
-          
             <button className={style.btnClose} onClick={props.onClickClose}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -20,9 +19,9 @@ export const AddTodoForm = (props) => {
                 <path
                   d="M6 6.00002L18.7742 18.7742M6 18.7742L18.7742 6"
                   stroke="#14142B"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>
@@ -30,7 +29,7 @@ export const AddTodoForm = (props) => {
           <h3 className={style.title}>Add New Task</h3>
         </div>
         <div className={style.content}>
-          <input className={style.input} value={props.value} onChange={props.onChange} />
+          <input className={style.input} value={props.value} onChange={props.onChange} placeholder="Fill the title" />
         </div>
         <div className={style.footer}>
           <button className={style.btn}  onClick={props.onClick}>

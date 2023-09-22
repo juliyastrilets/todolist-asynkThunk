@@ -28,17 +28,17 @@ export const Todo = (props) => {
         <button className={style.btn} onClick={props.remove}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
           >
             <path
               d="M6 6.00002L18.7742 18.7742M6 18.7742L18.7742 6"
               stroke="#ffffff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </button>

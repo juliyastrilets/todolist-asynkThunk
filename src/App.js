@@ -1,35 +1,51 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import style from  './App.module.css';
 import { AddTodoForm } from './widgets/addTodoForm/addTodoForm';
 import { ListTodos } from './widgets/list/list';
-import {useDispatch} from 'react-redux'
-import { addTodo } from './store/todoslice';
+import {useDispatch, useSelector} from 'react-redux'
+import { addNewTodo, fetchTodos } from './store/todoslice';
 
 
 function App() {
+  
   const [newTodo, setNewTodo] =useState(false)
-  const [value, setValue] =useState('')
+  const [text, setText] =useState('')
   const handeleChangeInput = (event) => {
-    setValue(event?.target.value);
+    setText(event?.target.value);
   };
+  const {status,error} = useSelector(state => state.todos)
   const despatch = useDispatch();
+
+  useEffect(()=>{
+    despatch(fetchTodos())
+  },[despatch])
+  
   const addTask =()=>{
-    despatch(addTodo(value));
-    setValue('');
+    despatch(addNewTodo(text));
+    setText('');
     setNewTodo(false)
   }
 
   const submitHandler =(event)=>{
-    despatch(addTodo(value));
+    despatch(addNewTodo(text));
     event.preventDefault();
-    setValue("");
+    setText("");
     setNewTodo(false);
   }
+
+
   return (
       <div className={style.wrapper}>
-        <div className={style.header}></div>
+        <div className={style.header}>
+          <h1>TodoList</h1>
+        </div>
         <div className={style.content}>
+          <div className={style.wrapperText}>
+            {status === 'loading' && <h2>Loading...</h2>}
+            {error && <h2 className={style.textError}> An error occured:{error}</h2>}
+          </div>
+
           <ListTodos/>
         </div>
         <div  className={style.footer}>
@@ -39,7 +55,7 @@ function App() {
         {newTodo &&
           <AddTodoForm 
             onClose = {()=> setNewTodo(false)} 
-            value={value}  
+            value={text}  
             onClick={addTask}
             onChange={handeleChangeInput}
             onSubmit={submitHandler}
