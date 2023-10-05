@@ -1,6 +1,6 @@
 import React from "react";
-import { Todo } from "../todo/todo";
-import style from "./list.module.css";
+import { Todo } from "../todo";
+import style from "./style.module.css";
 import {useSelector} from 'react-redux'
 import {useDispatch} from 'react-redux'
 import {deleteTodo,toggleStatus} from '../../store/todoslice'
